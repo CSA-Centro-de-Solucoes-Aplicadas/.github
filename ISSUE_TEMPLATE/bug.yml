@@ -7,7 +7,6 @@ body:
     id: descricao
     attributes:
       label: O que aconteceu
-      description: "Descreva o problema de forma objetiva."
     validations:
       required: true
 
@@ -15,10 +14,6 @@ body:
     id: passos
     attributes:
       label: Passos para reproduzir
-      placeholder: |
-        1. Acesse ...
-        2. Clique em ...
-        3. Veja o erro ...
     validations:
       required: true
 
@@ -28,34 +23,3 @@ body:
       label: Comportamento esperado
     validations:
       required: true
-
-  - type: dropdown
-    id: ambiente
-    attributes:
-      label: Ambiente
-      options:
-        - Produção
-        - QA / homologação
-        - Desenvolvimento local
-    validations:
-      required: true
-
-  - type: dropdown
-    id: severidade
-    attributes:
-      label: Severidade
-      options:
-        - Baixa — incômodo, tem contorno
-        - Média — atrapalha uma rotina
-        - Alta — bloqueia uma funcionalidade
-        - Crítica — sistema fora do ar ou perda de dados
-    validations:
-      required: true
-
-  - type: textarea
-    id: evidencias
-    attributes:
-      label: Evidências
-      description: "Prints, logs, mensagens de erro. Não inclua senhas, tokens ou dados pessoais."
-    validations:
-      required: false
