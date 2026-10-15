@@ -1,0 +1,57 @@
+name: "User Story"
+description: "Template para novas funcionalidades no formato de User Story"
+title: "[US] "
+labels: ["user-story"]
+body:
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story
+      description: "Descreva a história no formato Como / Eu quero / Para que"
+      placeholder: |
+        Como um [papel/perfil],
+        eu quero [uma ação ou funcionalidade],
+        para que [um motivo ou benefício].
+    validations:
+      required: true
+
+  - type: textarea
+    id: regras-negocio
+    attributes:
+      label: Regras de Negócio
+      description: "Liste as regras que essa funcionalidade precisa seguir"
+      placeholder: |
+        RN01: Quando [condição], então [comportamento esperado].
+        RN02: Quando [condição], então [comportamento esperado].
+    validations:
+      required: false
+
+  - type: textarea
+    id: criterios-aceitacao
+    attributes:
+      label: Critérios de Aceitação
+      description: "Use checkboxes para cada critério"
+      placeholder: |
+        - [ ] Critério 1: ...
+        - [ ] Critério 2: ...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: definicao-de-pronto
+    attributes:
+      label: Definição de Pronto (Definition of Done)
+      options:
+        - label: Todos os critérios de aceitação foram atendidos
+        - label: Código foi revisado e aprovado
+        - label: Testes necessários foram escritos e estão passando
+        - label: Documentação foi atualizada, se aplicável
+        - label: Funcionalidade foi implantada no ambiente definido
+
+  - type: textarea
+    id: contexto-adicional
+    attributes:
+      label: Contexto adicional
+      description: "Qualquer informação extra relevante"
+    validations:
+      required: false
