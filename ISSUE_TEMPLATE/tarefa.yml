@@ -1,0 +1,11 @@
+name: "Tarefa"
+description: "Trabalho técnico sem mudança de comportamento"
+title: "[TAREFA] "
+body:
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: Objetivo
+      description: "O que precisa ser feito e por quê."
+    validations:
+      required: true

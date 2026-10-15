@@ -1,0 +1,58 @@
+name: CI Java (reutilizável)
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Pasta do projeto Maven
+        type: string
+        default: .
+      java-version:
+        description: Versão do JDK
+        type: string
+        default: '21'
+      comando:
+        description: Comando de verificação
+        type: string
+        default: mvn -B verify
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: read
+
+jobs:
+  verificar:
+    name: Build e testes (Java)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar JDK ${{ inputs.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ inputs.java-version }}
+          distribution: temurin
+          cache: maven
+
+      - name: Verificar
+        run: ${{ inputs.comando }}
+
+      - name: Publicar relatório de testes
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: '${{ inputs.working-directory }}/**/target/*-reports/TEST-*.xml'
+          check_name: Relatório de testes (Java)
+
+      - name: Publicar cobertura
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cobertura-jacoco
+          path: ${{ inputs.working-directory }}/target/site/jacoco/
+          retention-days: 7
+          if-no-files-found: ignore

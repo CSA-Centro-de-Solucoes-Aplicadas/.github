@@ -1,0 +1,6 @@
+{
+  "name": "CSA — CI padrão",
+  "description": "CI da CSA usando os workflows reutilizáveis (Java e Node).",
+  "iconName": "octicon workflow",
+  "categories": ["Java", "JavaScript", "TypeScript"]
+}
