@@ -1,0 +1,6 @@
+{
+  "name": "CSA — Título de PR",
+  "description": "Valida o título do PR no formato tipo: descrição.",
+  "iconName": "octicon git-pull-request",
+  "categories": ["Automation"]
+}

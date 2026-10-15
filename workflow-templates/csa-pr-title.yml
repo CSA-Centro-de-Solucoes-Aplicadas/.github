@@ -1,0 +1,12 @@
+name: PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  titulo:
+    uses: CSA-Centro-de-Solucoes-Aplicadas/.github/.github/workflows/pr-title.yml@main

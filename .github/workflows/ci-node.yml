@@ -1,0 +1,41 @@
+name: CI Node (reutilizável)
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Pasta do projeto Node
+        type: string
+        default: .
+      node-version:
+        description: Versão do Node
+        type: string
+        default: '22'
+      comando:
+        description: Comando de verificação (lint, testes e build)
+        type: string
+        default: npm run verify
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    name: Verificar (Node)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: npm
+          cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+
+      - run: npm ci
+
+      - name: Verificar
+        run: ${{ inputs.comando }}

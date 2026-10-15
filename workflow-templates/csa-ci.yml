@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Mantenha só os jobs que o projeto usa e ajuste working-directory.
+jobs:
+  backend:
+    uses: CSA-Centro-de-Solucoes-Aplicadas/.github/.github/workflows/ci-java.yml@main
+    with:
+      working-directory: backend
+
+  frontend:
+    uses: CSA-Centro-de-Solucoes-Aplicadas/.github/.github/workflows/ci-node.yml@main
+    with:
+      working-directory: frontend

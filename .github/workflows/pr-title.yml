@@ -1,0 +1,22 @@
+name: Título do PR (reutilizável)
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    name: Validar título do PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validar título
+        env:
+          TITULO: ${{ github.event.pull_request.title }}
+        run: |
+          if [[ ! "$TITULO" =~ ^(feat|fix|refactor|docs|test|chore):\ .+ ]]; then
+            echo "::error::Título inválido: \"$TITULO\""
+            echo "Use 'tipo: descrição' com tipo em feat, fix, refactor, docs, test ou chore."
+            exit 1
+          fi
